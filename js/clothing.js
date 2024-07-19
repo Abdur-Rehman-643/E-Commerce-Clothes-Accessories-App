@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
       boxDiv.id = "box";
   
       let boxLink = document.createElement("a");
-      boxLink.href = "/contentDetails.html?" + ob.id;
+      boxLink.href = "./contentDetails.html?" + ob.id;
   
       let imgTag = document.createElement("img");
       imgTag.src = ob.preview || ob.image;

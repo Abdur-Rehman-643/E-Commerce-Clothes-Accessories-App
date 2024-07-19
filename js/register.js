@@ -30,5 +30,5 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     alert(`Registration successful! \nWelcome, ${user.username}!`);
     
-    window.location.href = '/mainscreen.html';
+    window.location.href = './mainscreen.html';
 });

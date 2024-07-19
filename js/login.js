@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (user) {
         alert(`Login successful! \nWelcome, ${user.username}!`);
         localStorage.setItem('loggedInUser', JSON.stringify(user)); 
-        window.location.href = '/mainscreen.html';
+        window.location.href = './mainscreen.html';
     } else {
         alert('User does not exist or password is incorrect. Please create an account.');
     }

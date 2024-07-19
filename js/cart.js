@@ -75,13 +75,13 @@ let buttonTag = document.createElement('button');
 buttonDiv.appendChild(buttonTag);
 
 let buttonLink = document.createElement('a');
-buttonLink.href = '/orderPlaced.html?';
+buttonLink.href = './orderPlaced.html';
 buttonTag.appendChild(buttonLink);
 
 let buttonText = document.createTextNode('Place Order');
 buttonTag.onclick = function() {
     console.log("clicked");
-    window.location.href = '/orderPlaced.html';
+    window.location.href = './orderPlaced.html';
 };
 buttonTag.appendChild(buttonText);
 

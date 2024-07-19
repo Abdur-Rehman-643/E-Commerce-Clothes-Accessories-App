@@ -1,13 +1,11 @@
-let contentTitle;
-
 console.log(document.cookie);
 
 function dynamicClothingSection(ob) {
   let boxDiv = document.createElement("div");
   boxDiv.id = "box";
-  
+
   let boxLink = document.createElement("a");
-  boxLink.href = "/contentDetails.html?" + ob.id;
+  boxLink.href = "./contentDetails.html?" + ob.id;
 
   let imgTag = document.createElement("img");
   imgTag.src = ob.preview || ob.image;
@@ -38,7 +36,6 @@ function dynamicClothingSection(ob) {
 }
 
 let mainContainer = document.getElementById("mainContainer");
-let containerClothing = document.getElementById("containerClothing");
 let containerAccessories = document.getElementById("containerAccessories");
 
 function loadProductsFromFirstAPI() {
@@ -54,10 +51,9 @@ function loadProductsFromFirstAPI() {
         for (let i = 0; i < contentTitle.length; i++) {
           if (contentTitle[i].isAccessory) {
             console.log(contentTitle[i]);
-            containerAccessories.appendChild(dynamicClothingSection(contentTitle[i]));
-          } else {
-            console.log(contentTitle[i]);
-            containerClothing.appendChild(dynamicClothingSection(contentTitle[i]));
+            containerAccessories.appendChild(
+              dynamicClothingSection(contentTitle[i])
+            );
           }
         }
         loadProductsFromSecondAPI();
@@ -73,21 +69,16 @@ function loadProductsFromFirstAPI() {
 function loadProductsFromSecondAPI() {
   let httpRequest = new XMLHttpRequest();
   httpRequest.onreadystatechange = function() {
-    if (this.readyState === 4) {
-      if (this.status == 200) {
-        let products = JSON.parse(this.responseText);
-        for (let i = 0; i < products.length; i++) {
-          if (products[i].id >= 11 && products[i].id <= 14) {
-            console.log(products[i]);
-            containerAccessories.appendChild(dynamicClothingSection(products[i]));
-          } else if (products[i].id >= 15 && products[i].id <= 20) {
-            console.log(products[i]);
-            containerClothing.appendChild(dynamicClothingSection(products[i]));
-          }
+    if (this.readyState === 4 && this.status === 200) {
+      let products = JSON.parse(this.responseText);
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].id >= 11 && products[i].id <= 14) {
+          console.log(products[i]);
+          containerAccessories.appendChild(dynamicClothingSection(products[i]));
         }
-      } else {
-        console.log("Second API call failed!");
       }
+    } else if (this.readyState === 4) {
+      console.log("Second API call failed!");
     }
   };
   httpRequest.open("GET", "https://fakestoreapi.com/products", true);
